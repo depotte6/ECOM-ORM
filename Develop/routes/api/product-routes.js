@@ -5,26 +5,52 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({
-      include: [{ model: Tag, through: 'product_id'}]
-    })
-    inc
+      include: [
+        { 
+          model: Category,
+          attributes: ['id', 'category_name'], 
+          association: 'tags',
+          through: {
+            attributes:[],
+          }
+        },
+      ],
+    });
     res.status(200).json(productData);
-  } catch (err) {
-    res.status(500);
-  }
+    } catch (err) {
+      res.status(500).json(err);
+    }
 });
   // find all products
   // be sure to include its associated Category and Tag data
 
 
-// get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
+// get one product   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+router.get('/:id', async (req, res) => {
+  try {
+  const productData = await Product.findByPk(req.params.id, {
+    include: [
+      {
+        model: Category
+      },
+      {
+        association: 'tags',
+        through: {
+          attributes: [],
+        },
+      },
+    ],
+  });
+  then(res.status(200).json(productData));
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  };
 });
 
 // create new product
-router.post('/', (req, res) => {
+
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -32,7 +58,7 @@ router.post('/', (req, res) => {
       stock: 3,
       tagIds: [1, 2, 3, 4]
     }
-  */
+
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -53,12 +79,12 @@ router.post('/', (req, res) => {
       console.log(err);
       res.status(400).json(err);
     });
-});
+});*/
 
 // update product
-router.put('/:id', (req, res) => {
+//router.put('/:id', (req, res) => {
   // update product data
-  Product.update(req.body, {
+  /*Product.update(req.body, {
     where: {
       id: req.params.id,
     },
@@ -100,5 +126,5 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
 });
-
+*/
 module.exports = router;

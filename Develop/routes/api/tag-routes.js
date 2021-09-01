@@ -1,17 +1,17 @@
 const router = require('express').Router();
-const { Tag, Product, Category, ProductTag } = require('../../models');
+const { Tag, Product } = require('../../models');
 
   // find all tags
   // be sure to include its associated Product data
 router.get('/', async (req, res) => {
   try {
     const tagData = await Tag.findAll({
-      include: {
+      include: [
+        {
           model: Product, 
-          attributes: {
-            include: ['product_name', 'price', 'stock', 'category_id'],
-          },
+          attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
         },
+      ],
     });
     res.status(200).json(tagData);
   } catch (err) {
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
       include: {
           model: Product, 
           attributes: {
-            include: ['product_name', 'price', 'stock', 'category_id'],
+            include: ['id', 'product_name', 'price', 'stock', 'category_id'],
           },
         }
     });
@@ -43,14 +43,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // create a new tag
-  try {
+    try {
     const tagData = await Tag.create({
-      where: {
-        tag_name: req.body.tag_name,
-      },
-    });
+      tag_name: req.body.tag_name
+    })
     res.status(200).json(tagData);
-  } catch {
+  } catch (err) {
     res.status(500).json(err);
   }
 });

@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
       include: [
         {
         model: Product,
-        attributes: ['product_name', 'price', 'stock'],
+        attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
         },
       ],
     });
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
           { 
             model: Product, 
             attributes: {
-              include: ['product_name', 'price', 'stock'],
+              include: ['id', 'product_name', 'price', 'stock', 'category_id'],
             }, 
           },
         ], 
@@ -44,10 +44,8 @@ router.post('/', async (req, res) => {
   // create a new category
   try {
     const categoryData = await Category.create({
-      where: {
-        category_name: req.body.category_name,
-      }
-    });
+      category_name: req.body.category_name
+    })
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(400).json(err);

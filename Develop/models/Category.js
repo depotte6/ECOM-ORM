@@ -13,9 +13,9 @@ Category.init(
       primaryKey: true,
     },
     category_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,

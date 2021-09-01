@@ -31,14 +31,23 @@ THEN I am able to successfully create, update, and delete data in my database
 ***Getting Started:***
 - [ ] update the .env file to include your mysql username and password
 - [ ] prepare the database in mysql:
-- [ ]       $ mysql -u root -p;
-- [ ]        $ (enterpassword);
-- [ ]        $ SOURCE db/schema.sql;
-- [ ]        $ quit;
+            ```
+            $ mysql -u root -p;
+            $ (enterpassword);
+            $ SOURCE db/schema.sql;
+            $ quit;
+            ```
 - [ ] install dependencies using: 
-- [ ]        $ npm install
-- [ ] seed database w/ $ node seeds
-- [ ] start the server w/ $ node server.js
+```       
+$ npm install
+```
+- [ ] seed database w/ 
+```$ node seeds
+```
+- [ ] start the server w/ 
+```
+$ node server.js
+```
 - [ ] open insomnia to live server at "http://localhost:3001/api"
 - [ ] view, add, change and delete data in 'Cateory', 'Product', & 'Tag' models using the routes 'api/categories', 'api/products' & 'api/tags' routes.
 

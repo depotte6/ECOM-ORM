@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
       include: [
         {
         model: Product,
-        attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+        attributes: ['product_name', 'price', 'stock'],
         },
       ],
     });
@@ -18,23 +18,23 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const categoryData = await Category.findbyPk(req.params.id, {
-      include: [
-        { 
-          model: Product, 
-          attributes: {
-            include: ['id', 'product_name', 'price', 'stock', 'catergory_id'],
-          }, 
-        },
-      ]
+    try {
+      const categoryData = await Category.findByPk(req.params.id, {
+        include: [
+          { 
+            model: Product, 
+            attributes: {
+              include: ['product_name', 'price', 'stock'],
+            }, 
+          },
+        ], 
     }); 
     if (!categoryData) {
       res.status(404).json({ message: 'No Category found with that ID!'});
       return;
-    }
-    if (categoryData) {
-      res.status(200).json(categoryData)
-    } else {
+      }
+      res.status(200).json(categoryData);
+    } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
   try {
     const categoryData = await Category.create({
       where: {
-        category_name: req.body.category_name
+        category_name: req.body.category_name,
       }
     });
     res.status(200).json(categoryData);

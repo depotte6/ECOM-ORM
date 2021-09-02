@@ -1,9 +1,10 @@
-# ECOM-ORM
+### ECOM-ORM
 
 The back end for an e-commerce site.
 Includes a working Express.js API to use Sequelize to interact with a MySQL database. 
 
-## User Story
+
+# User Story
 
 ```md
 AS A manager at an internet retail company
@@ -11,7 +12,7 @@ I WANT a back end for my e-commerce website that uses the latest technologies
 SO THAT my company can compete with other e-commerce companies
 ```
 
-## Acceptance Criteria
+# Acceptance Criteria
 
 ```md
 GIVEN a functional Express.js API
@@ -31,23 +32,29 @@ THEN I am able to successfully create, update, and delete data in my database
 ***Getting Started:***
 - [ ] update the .env file to include your mysql username and password
 - [ ] prepare the database in mysql:
-            ```
-            $ mysql -u root -p;
-            $ (enterpassword);
-            $ SOURCE db/schema.sql;
-            $ quit;
-            ```
+```
+$ mysql -u root -p;
+$ (enterpassword);
+$ SOURCE db/schema.sql;
+$ quit;
+```
 - [ ] install dependencies using: 
 ```       
 $ npm install
 ```
 - [ ] seed database w/ 
-```$ node seeds
+```
+$ node seeds
 ```
 - [ ] start the server w/ 
 ```
 $ node server.js
 ```
 - [ ] open insomnia to live server at "http://localhost:3001/api"
-- [ ] view, add, change and delete data in 'Cateory', 'Product', & 'Tag' models using the routes 'api/categories', 'api/products' & 'api/tags' routes.
+- [ ] view, add, change and delete data in 'Cateory', 'Product', & 'Tag' models using the api routes
+
+*resources*
+recording of set up and capabilities
+
+
 

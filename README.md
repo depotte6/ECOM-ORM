@@ -53,8 +53,13 @@ $ node server.js
 - [ ] open insomnia to live server at "http://localhost:3001/api"
 - [ ] view, add, change and delete data in 'Cateory', 'Product', & 'Tag' models using the api routes
 
-*resources*
+## *resources*<br>
+
+[WALKTHROUGH VIDEO](https://youtu.be/EzH3HI7bUmo)
+```md
 recording of set up and capabilities
+```
+
 
 
 
